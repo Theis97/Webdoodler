@@ -11,6 +11,7 @@ function setup() {
 	var actionHandler = new ActionHandler();
 	var canvas = document.getElementById('drawingLayer');
 	var context = canvas.getContext("2d");
+	var currToolIndicator = document.getElementById('currToolIndicator');
 
 	var colorPicker = document.getElementById('colorPicker');
 	var currTool = new Brush(colorPicker);
@@ -18,26 +19,28 @@ function setup() {
 		currTool.changeColor('#' + colorPicker.jscolor);
 	});
 
+	var sizeSlider = document.getElementById('brushSize');
+	sizeSlider.value = currTool.size;
+	sizeSlider.addEventListener('pointerup', function(event) {
+		currTool.changeSize(sizeSlider.value);
+	});
+
 	var brushButton = document.getElementById('brushButton');
 	brushButton.addEventListener('click', function(event) {
 		currTool = new Brush(colorPicker);
+		currTool.changeSize(sizeSlider.value);
+		currToolIndicator.textContent = 'Selected: Brush';
 	});
 
 	var eyedropperButton = document.getElementById('eyedropperButton');
 	eyedropperButton.addEventListener('click', function(event) {
 		currTool = new Eyedropper(colorPicker);
+		currToolIndicator.textContent = 'Selected: Eyedropper';
 	});
 
 	var undoButton = document.getElementById('undoButton');
 	undoButton.addEventListener('click', function(event) {
 		actionHandler.undo(canvas, context);
-	});
-
-	var sizeSlider = document.getElementById('brushSize');
-	sizeSlider.value = currTool.size;
-
-	sizeSlider.addEventListener('pointerup', function(event) {
-		currTool.changeSize(sizeSlider.value);
 	});
 
 	canvas.addEventListener('pointermove', function(event) {
@@ -47,13 +50,13 @@ function setup() {
   });
 	canvas.addEventListener('pointerdown', function(event) {
 		var position = getPointerPosition(canvas, event);
-		actionHandler.addNewAction(currTool.copy(), position.x, position.y);
 		currTool.onDown(context, position.x, position.y);
+		actionHandler.addNewAction(currTool.copy(), position.x, position.y);
 	});
 	canvas.addEventListener('pointerup', function(event) {
 		var position = getPointerPosition(canvas, event);
-		actionHandler.setRecording(false);
 		currTool.onUp(context, position.x, position.y);
+		actionHandler.setRecording(false);
 	});
 	canvas.addEventListener('pointerleave', function(event) {
 		var position = getPointerPosition(canvas, event);

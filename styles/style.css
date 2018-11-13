@@ -1,7 +1,13 @@
 body {
-	background-color: #e6ffcc;
+	background-color: dimgray;
 }
 
 canvas {
 	background-color: white;
+	margin: 10px;
+}
+
+#menu {
+	float: left;
+	margin: 10px;
 }

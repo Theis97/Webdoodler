@@ -14,18 +14,19 @@
 	<script src="scripts/setup.js"></script>
 
 	<body onload="setup();">
-		<canvas id="drawingLayer" width="900" height="700"></canvas>
+		<div id='menu'>
+			<p>Size:</p>
+			<input type="range" id="brushSize" name="size" min="1" max="50">
+			<p>Color:</p>
+			<input class="jscolor" id="colorPicker" value="000000">
+			<p><button id="undoButton" name="undo">Undo</button></p>
+			<p>Tools:</p>
+			<p><button id="brushButton" name="brush">Brush</button></p>
+			<p><button id="eyedropperButton" name="eyedropper">Eyedropper</button></p>
+			<p id='currToolIndicator'>Selected: Brush</p>
+		</div>
 
-		<p>Brush settings:</p>
-  	<input type="range" id="brushSize" name="size" min="1" max="50">
-		<label for="size">Size</label>
-
-		Color: <input class="jscolor" id="colorPicker" value="000000">
-
-		<button id="undoButton" name="undo">Undo</button>
-
-		<button id="eyedropperButton" name="eyedropper">Eyedropper</button>
-		<button id="brushButton" name="brush">Brush</button>
+		<canvas id="drawingLayer" width="1600" height="900"></canvas>
 
 	</body>
 </html>
