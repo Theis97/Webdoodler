@@ -1,0 +1,55 @@
+------
+Week 1
+------
+
+1. User Interface
+ - 2 points: All basic functions available to use are represented in the
+   user interface (brush tool, eyedropper tool, brush settings,
+   drawable canvas, undo). The current state of selected tools and brush
+   options is indicated.
+ - 2.5 points: Interface looks polished.
+
+2. Drawing Tool
+ - 2 points: User can draw on the canvas by clicking and dragging the cursor
+   across the canvas. There are basic options to change the size and color of
+   the brush.
+ - 2.5 points: The tool has more advanced options, such as random scattering.
+
+3. Undo
+ - 2 points: At least a single brushstroke can be undone.
+ - 2.5 points: All brushstrokes can be undone.
+
+4. Eyedropper tool
+ - 2 points: User can select a color from the canvas to use with the brush.
+ - 2.5 points: Colors picked with the eyedropper can be saved to a palette.
+
+5. Manual test plan
+ - 2 points: Basic testing of all features
+ - 2.5 points: Tests for a variety of edge cases
+
+------
+Week 2
+------
+
+1. Image saving/loading
+ - 2 points: User can upload their own images as a base for a new canvas
+   and save their drawings locally.
+ - 2.5 points: Images can be loaded into existing doodle.
+
+2. Layers
+ - 2 points: User can draw on a predefined number of layers.
+ - 2.5 points: User can add and delete layers.
+
+3. More drawing tools
+ - 2 points: 3 or more additional drawing tools
+ - 2.5 points: At least one of the tools has features that are significantly
+   different from the brush tool from last week (for example, drawing a shape
+   by placing vertices)
+
+4. Filters
+ - 2 points: A few basic filters can be applied to the doodle.
+ - 2.5 points: There are more complicated filters.
+
+5. "Unit Tests"
+ - 2 points: Most functions are tested
+ - 2.5 points: Tests are extremely thorough
