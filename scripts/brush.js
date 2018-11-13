@@ -4,6 +4,17 @@ class Brush {
     this.lastX = 0;
     this.lastY = 0;
     this.size = 10;
+    this.color = '#000000';
+  }
+
+  copy() {
+    var copy = new Brush();
+    copy.isPainting = this.isPainting;
+    copy.lastX = this.lastX;
+    copy.lastY = this.lastY;
+    copy.size = this.size;
+    copy.color = this.color;
+    return copy;
   }
 
   setLastPos(newX, newY) {
@@ -17,13 +28,18 @@ class Brush {
     context.lineTo(x, y);
     context.lineWidth = this.size;
     context.lineCap = "round";
+    context.strokeStyle = this.color;
     context.stroke();
 
     this.setLastPos(x, y);
   }
 
-  changeSize(newSize) {
-    this.size = newSize;
+  changeColor(color) {
+    this.color = color;
+  }
+
+  changeSize(size) {
+    this.size = size;
   }
 
   onMove(context, x, y) {
