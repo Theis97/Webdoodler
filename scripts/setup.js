@@ -7,6 +7,9 @@ function getPointerPosition(canvas, event) {
 	};
 }
 
+/*
+ * Sets up UI elements with their functionality.
+ */
 function setup() {
 	var actionHandler = new ActionHandler();
 	var canvas = document.getElementById('drawingLayer');

@@ -1,5 +1,10 @@
-class Brush {
+/*
+ * The basic drawing brush, simply draws a freeform line following the
+ * cursor when clicking. Size and color can be adjusted.
+ */
+class Brush extends Tool {
   constructor(colorPicker) {
+    super();
     this.colorPicker = colorPicker;
     this.isPainting = false;
     this.lastX = 0;

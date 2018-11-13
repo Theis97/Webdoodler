@@ -1,3 +1,7 @@
+/*
+ * Keeps a record of a single action (for example, a single brushstroke)
+ * made by the user.
+ */
 class Action {
   constructor(tool, startX, startY) {
     this.tool = tool;

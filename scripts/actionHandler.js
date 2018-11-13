@@ -1,3 +1,7 @@
+/*
+ * Keeps track of all changes the user has made to the canvas, can revert
+ * canvas to previous states.
+ */
 class ActionHandler {
   constructor() {
     this.actions = [];

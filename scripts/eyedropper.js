@@ -1,5 +1,9 @@
- class Eyedropper {
+/*
+ * Tool for selecting a color from the canvas to use with another tool.
+ */
+ class Eyedropper extends Tool {
    constructor(colorPicker) {
+     super();
      this.colorPicker = colorPicker;
      this.color = '#' + colorPicker.jscolor;
      this.r = 0;
@@ -29,25 +33,4 @@
    isRecorded() {
      return false;
    }
-
-   draw(context, x, y) {
-     // do nothing
-   }
-
-   changeColor(color) {
-     // do nothing
-   }
-
-   changeSize(size) {
-     // do nothing
-   }
-
-   onMove(context, x, y) {
-     // do nothing
-   }
-
-   onLeave(context, x, y) {
-     // do nothing
-   }
-
  }
