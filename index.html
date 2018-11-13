@@ -6,15 +6,26 @@
 		<link rel="stylesheet" href="styles/style.css">
 	</head>
 
-	<script src="scripts/brush.js"> </script>
-	<script src="scripts/setup.js"> </script>
+	<script src="jscolor-2.0.5/jscolor.js"></script>
+	<script src="scripts/brush.js"></script>
+	<script src="scripts/eyedropper.js"></script>
+	<script src="scripts/action.js"></script>
+	<script src="scripts/actionHandler.js"></script>
+	<script src="scripts/setup.js"></script>
 
 	<body onload="setup();">
-		<canvas id="drawingLayer" width="1600" height="800"></canvas>
+		<canvas id="drawingLayer" width="900" height="700"></canvas>
 
 		<p>Brush settings:</p>
   	<input type="range" id="brushSize" name="size" min="1" max="50">
 		<label for="size">Size</label>
-		
+
+		Color: <input class="jscolor" id="colorPicker" value="000000">
+
+		<button id="undoButton" name="undo">Undo</button>
+
+		<button id="eyedropperButton" name="eyedropper">Eyedropper</button>
+		<button id="brushButton" name="brush">Brush</button>
+
 	</body>
 </html>

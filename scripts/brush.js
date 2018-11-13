@@ -1,14 +1,15 @@
 class Brush {
-  constructor() {
+  constructor(colorPicker) {
+    this.colorPicker = colorPicker;
     this.isPainting = false;
     this.lastX = 0;
     this.lastY = 0;
     this.size = 10;
-    this.color = '#000000';
+    this.color = '#' + colorPicker.jscolor;
   }
 
   copy() {
-    var copy = new Brush();
+    var copy = new Brush(this.colorPicker);
     copy.isPainting = this.isPainting;
     copy.lastX = this.lastX;
     copy.lastY = this.lastY;
@@ -63,5 +64,9 @@ class Brush {
       this.draw(context, x, y);
     }
     this.isPainting = false;
+  }
+
+  isRecorded() {
+    return true;
   }
 }
