@@ -46,6 +46,11 @@ function setup() {
 		actionHandler.undo(canvas, context);
 	});
 
+	var fileSelector = document.getElementById('fileSelect');
+	fileSelector.addEventListener('change', function(event) {
+		loadImage(canvas, context, fileSelector.files[0]);
+	});
+
 	canvas.addEventListener('pointermove', function(event) {
 		var position = getPointerPosition(canvas, event);
 		currTool.onMove(context, position.x, position.y);

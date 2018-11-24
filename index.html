@@ -12,6 +12,7 @@
 	<script src="scripts/eyedropper.js"></script>
 	<script src="scripts/action.js"></script>
 	<script src="scripts/actionHandler.js"></script>
+	<script src="scripts/imageIO.js"></script>
 	<script src="scripts/setup.js"></script>
 
 	<body onload="setup();">
@@ -25,9 +26,10 @@
 			<p><button id="brushButton" name="brush">Brush</button></p>
 			<p><button id="eyedropperButton" name="eyedropper">Eyedropper</button></p>
 			<p id='currToolIndicator'>Selected: Brush</p>
+			<input type="file" id="fileSelect" name="file" accept="image/*"/>
 		</div>
 
-		<canvas id="drawingLayer" width="1600" height="900"></canvas>
+		<canvas id="drawingLayer" width="1200" height="800"></canvas>
 
 	</body>
 </html>
