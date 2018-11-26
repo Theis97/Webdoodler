@@ -4,9 +4,7 @@
  */
 class ActionHandler {
   constructor() {
-    this.actions = [];
-    this.recording = false;
-    this.img = null
+    this.reset();
   }
 
   setImage(img) {
@@ -15,6 +13,12 @@ class ActionHandler {
 
   setRecording(recording) {
     this.recording = recording;
+  }
+
+  reset() {
+    this.actions = [];
+    this.recording = false;
+    this.img = null;
   }
 
   addNewAction(tool, x, y) {

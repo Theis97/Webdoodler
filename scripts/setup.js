@@ -15,7 +15,6 @@ function setup() {
 	var canvas = document.getElementById('drawingLayer');
 	var context = canvas.getContext("2d");
 	var currToolIndicator = document.getElementById('currToolIndicator');
-
 	var loadedImg = new Image();
 
 	var colorPicker = document.getElementById('colorPicker');
@@ -48,9 +47,15 @@ function setup() {
 		actionHandler.undo(canvas, context);
 	});
 
+	var filterButton = document.getElementById('filterButton');
+	filterButton.addEventListener('click', function(event) {
+		applyFilter(canvas, context);
+	});
+
 	var fileSelector = document.getElementById('fileSelect');
 	fileSelector.addEventListener('change', function(event) {
 		loadImage(loadedImg, canvas, context, fileSelector.files[0]);
+		actionHandler.reset();
 		actionHandler.setImage(loadedImg);
 	});
 
