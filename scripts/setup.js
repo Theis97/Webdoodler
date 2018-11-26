@@ -16,6 +16,8 @@ function setup() {
 	var context = canvas.getContext("2d");
 	var currToolIndicator = document.getElementById('currToolIndicator');
 
+	var loadedImg = new Image();
+
 	var colorPicker = document.getElementById('colorPicker');
 	var currTool = new Brush(colorPicker);
 	colorPicker.addEventListener('change', function(event) {
@@ -48,7 +50,8 @@ function setup() {
 
 	var fileSelector = document.getElementById('fileSelect');
 	fileSelector.addEventListener('change', function(event) {
-		loadImage(canvas, context, fileSelector.files[0]);
+		loadImage(loadedImg, canvas, context, fileSelector.files[0]);
+		actionHandler.setImage(loadedImg);
 	});
 
 	canvas.addEventListener('pointermove', function(event) {

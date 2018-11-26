@@ -6,6 +6,11 @@ class ActionHandler {
   constructor() {
     this.actions = [];
     this.recording = false;
+    this.img = null
+  }
+
+  setImage(img) {
+    this.img = img;
   }
 
   setRecording(recording) {
@@ -34,6 +39,9 @@ class ActionHandler {
 
   redraw(canvas, context) {
     context.clearRect(0, 0, canvas.width, canvas.height);
+    if (this.img != null) {
+      context.drawImage(this.img, 0, 0);
+    }
     for (let action of this.actions) {
       action.doAction(context);
     }

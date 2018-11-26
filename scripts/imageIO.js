@@ -3,9 +3,8 @@ function changeCanvasSize(canvas, width, height) {
 	canvas.height = height;
 }
 
-function loadImage(canvas, context, imgFile) {
+function loadImage(img, canvas, context, imgFile) {
   var reader = new FileReader();
-  var img = new Image();
 
   reader.addEventListener("load", function () {
     img.src = reader.result;
