@@ -1,4 +1,7 @@
 function changeCanvasSize(canvas, width, height) {
+	var container = document.getElementById('doodle');
+	container.style.width = "" + width + "px";
+	container.style.height = "" + height + "px";
 	canvas.width = width;
 	canvas.height = height;
 }

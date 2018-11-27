@@ -12,7 +12,7 @@ function getPointerPosition(canvas, event) {
  */
 function setup() {
 	var actionHandler = new ActionHandler();
-	var canvas = document.getElementById('drawingLayer');
+	var canvas = document.getElementById('layer0');
 	var context = canvas.getContext("2d");
 	var currToolIndicator = document.getElementById('currToolIndicator');
 	var loadedImg = new Image();
