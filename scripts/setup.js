@@ -64,21 +64,6 @@ function setup() {
 	var addLayerButton = document.getElementById('addLayerButton');
 	addLayerButton.addEventListener('click', function(event) {
 		layerManager.addLayer();
-		/*
-		var parent = document.getElementById('doodle');
-		var newLayer = document.createElement('canvas');
-		newLayer.id = "layer1";
-		newLayer.width = 1200;
-		newLayer.height = 800;
-		newLayer.style.zIndex = 1;
-		parent.appendChild(newLayer);
-
-		var p = document.getElementById('layerList');
-		var layerText = document.createElement('li');
-		layerText.textContent = "Layer 1";
-		var makeActiveButton = document.createElement('button');
-		p.insertBefore(layerText, layer0Label);
-		*/
 	});
 
 	canvas.addEventListener('pointermove', function(event) {

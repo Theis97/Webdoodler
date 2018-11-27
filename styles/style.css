@@ -19,6 +19,6 @@ body {
 	margin: 10px;
 }
 
-#layer0Label {
+.layerSelected {
 	background-color: green;
 }
