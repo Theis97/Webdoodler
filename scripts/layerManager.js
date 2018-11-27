@@ -33,6 +33,7 @@ class LayerManager {
     if(this.activeLayerIndex < this.layers.length) {
       this.layers[this.activeLayerIndex].markActiveState(false);
     }
+
     for (var i = 0; i < this.layers.length; i++) {
       var currLayer = this.layers[i];
       if(currLayer.id === idToActivate) {
