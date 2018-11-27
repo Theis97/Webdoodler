@@ -1,12 +1,3 @@
-// https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
-function getPointerPosition(canvas, event) {
-	var rect = canvas.getBoundingClientRect();
-	return {
-		x: event.clientX - rect.left,
-		y: event.clientY - rect.top
-	};
-}
-
 /*
  * Sets up UI elements with their functionality.
  */
@@ -14,8 +5,8 @@ function setup() {
 	var doodleWidth = 1200;
 	var doodleHeight = 800;
 
-	var layerManager = new LayerManager(doodleWidth, doodleHeight);
 	var actionHandler = new ActionHandler();
+	var layerManager = new LayerManager(doodleWidth, doodleHeight, actionHandler);
 	var canvas = document.getElementById('layer0');
 	var currToolIndicator = document.getElementById('currToolIndicator');
 	var loadedImg = new Image();
@@ -47,13 +38,16 @@ function setup() {
 
 	var undoButton = document.getElementById('undoButton');
 	undoButton.addEventListener('click', function(event) {
-		actionHandler.undo(canvas, context);
+		actionHandler.undo(layerManager);
 	});
 
 	var brightenButton = document.getElementById('brightenButton');
 	brightenButton.addEventListener('click', function(event) {
+		var layer = layerManager.getActiveLayer();
+    var canvas = layer.canvas;
+    var context = canvas.getContext("2d");
 		brighten(canvas, context);
-		actionHandler.addFilter(brighten);
+		actionHandler.addFilter(layerManager, brighten);
 	});
 
 	var fileSelector = document.getElementById('fileSelect');
@@ -67,27 +61,4 @@ function setup() {
 	addLayerButton.addEventListener('click', function(event) {
 		layerManager.addLayer(doodleWidth, doodleHeight);
 	});
-
-/*
-	canvas.addEventListener('pointermove', function(event) {
-		var position = getPointerPosition(canvas, event);
-		currTool.onMove(context, position.x, position.y);
-		actionHandler.updateCurrentStroke(position.x, position.y);
-  });
-	canvas.addEventListener('pointerdown', function(event) {
-		var position = getPointerPosition(canvas, event);
-		currTool.onDown(context, position.x, position.y);
-		actionHandler.addNewStroke(currTool.copy(), position.x, position.y);
-	});
-	canvas.addEventListener('pointerup', function(event) {
-		var position = getPointerPosition(canvas, event);
-		currTool.onUp(context, position.x, position.y);
-		actionHandler.setRecording(false);
-	});
-	canvas.addEventListener('pointerleave', function(event) {
-		var position = getPointerPosition(canvas, event);
-		currTool.onLeave(context, position.x, position.y);
-		actionHandler.strokeInterrupted(position.x, position.y);
-	});
-	*/
 }

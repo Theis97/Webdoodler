@@ -8,8 +8,9 @@ function getPointerPosition(canvas, event) {
 }
 
 class Layer {
-  constructor(id, width, height, layerManager) {
+  constructor(id, width, height, layerManager, actionHandler) {
     this.layerManager = layerManager;
+    this.actionHandler = actionHandler;
     this.id = id;
     this.canvas = null;
     this.listItem = null;
@@ -30,11 +31,14 @@ class Layer {
 
     var context = canvas.getContext("2d");
     var layerManager = this.layerManager;
+    var actionHandler = this.actionHandler;
     canvas.addEventListener('pointerdown', function(event) {
       var layer = layerManager.getLayer(this.id);
       if(layer.isActive) {
         var position = getPointerPosition(canvas, event);
         currTool.onDown(context, position.x, position.y);
+        actionHandler.addNewStroke(this.id, currTool.copy(),
+                                   position.x, position.y);
       }
     });
     canvas.addEventListener('pointermove', function(event) {
@@ -42,6 +46,7 @@ class Layer {
       if(layer.isActive) {
         var position = getPointerPosition(canvas, event);
         currTool.onMove(context, position.x, position.y);
+        actionHandler.updateCurrentStroke(position.x, position.y);
       }
     });
     canvas.addEventListener('pointerup', function(event) {
@@ -49,6 +54,7 @@ class Layer {
       if(layer.isActive) {
         var position = getPointerPosition(canvas, event);
         currTool.onUp(context, position.x, position.y);
+        actionHandler.setRecording(false);
       }
     });
     canvas.addEventListener('pointerleave', function(event) {
@@ -56,6 +62,7 @@ class Layer {
       if(layer.isActive) {
         var position = getPointerPosition(canvas, event);
         currTool.onLeave(context, position.x, position.y);
+        actionHandler.strokeInterrupted(position.x, position.y);
       }
     });
   }
@@ -87,6 +94,11 @@ class Layer {
       layerManager.removeLayer(id);
     });
     listItem.appendChild(deleteButton);
+  }
+
+  clear() {
+    var context = this.canvas.getContext("2d");
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   markActiveState(isActive) {

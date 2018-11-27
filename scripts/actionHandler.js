@@ -21,14 +21,15 @@ class ActionHandler {
     this.img = null;
   }
 
-  addFilter(filter) {
-    this.actions.push(new FilterAction(filter));
+  addFilter(layerManager, filter) {
+    var layerId = layerManager.getActiveLayer().id;
+    this.actions.push(new FilterAction(layerId, filter));
   }
 
-  addNewStroke(tool, x, y) {
+  addNewStroke(layerId, tool, x, y) {
     if(tool.isRecorded()) {
       this.recording = true;
-      this.actions.push(new Stroke(tool.copy(), x, y));
+      this.actions.push(new Stroke(layerId, tool.copy(), x, y));
     }
   }
 
@@ -45,18 +46,18 @@ class ActionHandler {
     }
   }
 
-  redraw(canvas, context) {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+  redraw(layerManager) {
+    layerManager.clearLayers();
     if (this.img != null) {
-      context.drawImage(this.img, 0, 0);
+      layerManager.setBackgroundImgLayer(this.img);
     }
     for (let action of this.actions) {
-      action.doAction(canvas, context);
+      action.doAction(layerManager);
     }
   }
 
-  undo(canvas, context) {
+  undo(layerManager) {
     this.actions.pop();
-    this.redraw(canvas, context);
+    this.redraw(layerManager);
   }
 }

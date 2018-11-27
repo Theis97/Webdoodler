@@ -1,5 +1,6 @@
 class LayerManager {
-  constructor(width, height) {
+  constructor(width, height, actionHandler) {
+    this.actionHandler = actionHandler;
     this.layers = [];
     this.nextId = 0;
     this.addLayer(width, height);
@@ -16,6 +17,10 @@ class LayerManager {
     this.addLayer(width, height);
     this.activeLayerIndex = 0;
     this.layers[0].markActiveState(true);
+  }
+
+  getActiveLayer() {
+    return this.layers[this.activeLayerIndex];
   }
 
   getLayer(id) {
@@ -38,7 +43,7 @@ class LayerManager {
   }
 
   addLayer(width, height) {
-    var newLayer = new Layer(this.nextId, width, height, this);
+    var newLayer = new Layer(this.nextId, width, height, this, this.actionHandler);
 
     var canvasContainer = document.getElementById('doodle');
     canvasContainer.appendChild(newLayer.canvas);
@@ -66,6 +71,12 @@ class LayerManager {
         this.layers.splice(i, 1);
         break;
       }
+    }
+  }
+
+  clearLayers() {
+    for (let layer of this.layers) {
+      layer.clear();
     }
   }
 
