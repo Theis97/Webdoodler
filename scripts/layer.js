@@ -18,29 +18,43 @@ class Layer {
   }
 
   setupListItem(id) {
-    this.listItem = document.createElement('li');
-    this.listItem.id = "layer" + id + "Listing";
+    var listItem = document.createElement('li');
+    this.listItem = listItem;
+    listItem.id = "layer" + id + "Listing";
 
     var label = document.createElement('label');
     label.textContent = "Layer " + id;
-    this.listItem.appendChild(label);
+    listItem.appendChild(label);
 
     var makeActiveButton = document.createElement('button');
     makeActiveButton.textContent = "Make Active";
     var layerManager = this.layerManager;
     var id = this.id;
-    makeActiveButton.addEventListener('click', function(event){
+    makeActiveButton.addEventListener('click', function(event) {
       layerManager.updateActiveLayer(id);
     });
-    this.listItem.appendChild(makeActiveButton);
+    listItem.appendChild(makeActiveButton);
 
     var deleteButton = document.createElement('button');
     deleteButton.textContent = "Delete";
-    this.listItem.appendChild(deleteButton);
+    var canvas = this.canvas;
+    deleteButton.addEventListener('click', function(event) {
+      label.parentNode.removeChild(label);
+      makeActiveButton.parentNode.removeChild(makeActiveButton);
+      deleteButton.parentNode.removeChild(deleteButton);
+      listItem.parentNode.removeChild(listItem);
+      canvas.parentNode.removeChild(canvas);
+      layerManager.removeLayer(id);
+    });
+    listItem.appendChild(deleteButton);
   }
 
   markActiveState(isActive) {
     this.isActive = isActive;
-    this.listItem.classList.toggle('layerSelected');
+    if(isActive) {
+      this.listItem.classList.add('layerSelected');
+    } else {
+      this.listItem.classList.remove('layerSelected');
+    }
   }
 }

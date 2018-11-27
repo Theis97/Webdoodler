@@ -2,20 +2,20 @@ class LayerManager {
   constructor() {
     this.layers = [];
     this.nextId = 0;
-    this.activeLayerIndex = -1;
     this.addLayer();
-    this.updateActiveLayer(0);
+    this.activeLayerIndex = 0;
+    this.layers[0].markActiveState(true);
   }
 
   updateActiveLayer(idToActivate) {
-    if(this.activeLayerIndex != -1) {
-      this.layers[this.activeLayerIndex].markActiveState(false, 'none');
+    if(this.activeLayerIndex < this.layers.length) {
+      this.layers[this.activeLayerIndex].markActiveState(false);
     }
     for (var i = 0; i < this.layers.length; i++) {
       var currLayer = this.layers[i];
       if(currLayer.id === idToActivate) {
         this.activeLayerIndex = i;
-        currLayer.markActiveState(true, 'green');
+        currLayer.markActiveState(true);
       }
     }
   }
@@ -37,5 +37,18 @@ class LayerManager {
 
     this.layers.push(newLayer);
     this.nextId++;
+  }
+
+  removeLayer(idToRemove) {
+    for (var i = 0; i < this.layers.length; i++) {
+      var currLayer = this.layers[i];
+      if(currLayer.id === idToRemove) {
+        if(this.activeLayerIndex > i) {
+          this.activeLayerIndex--;
+        }
+        this.layers.splice(i, 1);
+        break;
+      }
+    }
   }
 }
