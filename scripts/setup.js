@@ -11,6 +11,7 @@ function getPointerPosition(canvas, event) {
  * Sets up UI elements with their functionality.
  */
 function setup() {
+	var layerManager = new LayerManager();
 	var actionHandler = new ActionHandler();
 	var canvas = document.getElementById('layer0');
 	var context = canvas.getContext("2d");
@@ -58,6 +59,26 @@ function setup() {
 		loadImage(loadedImg, canvas, context, fileSelector.files[0]);
 		actionHandler.reset();
 		actionHandler.setImage(loadedImg);
+	});
+
+	var addLayerButton = document.getElementById('addLayerButton');
+	addLayerButton.addEventListener('click', function(event) {
+		layerManager.addLayer();
+		/*
+		var parent = document.getElementById('doodle');
+		var newLayer = document.createElement('canvas');
+		newLayer.id = "layer1";
+		newLayer.width = 1200;
+		newLayer.height = 800;
+		newLayer.style.zIndex = 1;
+		parent.appendChild(newLayer);
+
+		var p = document.getElementById('layerList');
+		var layerText = document.createElement('li');
+		layerText.textContent = "Layer 1";
+		var makeActiveButton = document.createElement('button');
+		p.insertBefore(layerText, layer0Label);
+		*/
 	});
 
 	canvas.addEventListener('pointermove', function(event) {

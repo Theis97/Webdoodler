@@ -2,12 +2,23 @@ body {
 	background-color: dimgray;
 }
 
-canvas {
+#doodle {
+	width: 1200px;
+	height: 800px;
+	overflow: hidden;
 	background-color: white;
 	margin: 10px;
+}
+
+#layer1 {
+	z-index: 0;
 }
 
 #menu {
 	float: left;
 	margin: 10px;
+}
+
+#layer0Label {
+	background-color: green;
 }

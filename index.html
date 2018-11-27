@@ -7,6 +7,8 @@
 	</head>
 
 	<script src="jscolor-2.0.5/jscolor.js"></script>
+	<script src="scripts/layer.js"></script>
+	<script src="scripts/layerManager.js"></script>
 	<script src="scripts/tool.js"></script>
 	<script src="scripts/brush.js"></script>
 	<script src="scripts/eyedropper.js"></script>
@@ -37,11 +39,12 @@
 
 			<p>Load an existing image</p>
 			<input type="file" id="fileSelect" name="file" accept="image/*"/>
+
+			<p><button id="addLayerButton" name="addLayer">New Layer</button></p>
+			<ul id='layerList'></ul>
 		</div>
 
-		<div id='doodle'>
-			<canvas id="layer0" width="1200" height="800"></canvas>
-		</div>
+		<div id='doodle'></div>
 
 	</body>
 </html>
