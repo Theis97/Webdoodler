@@ -1,20 +1,63 @@
+// https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
+function getPointerPosition(canvas, event) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+		x: event.clientX - rect.left,
+		y: event.clientY - rect.top
+	};
+}
+
 class Layer {
-  constructor(id, lm) {
-    this.layerManager = lm;
+  constructor(id, width, height, layerManager) {
+    this.layerManager = layerManager;
     this.id = id;
     this.canvas = null;
     this.listItem = null;
     this.isActive = false;
-    this.setupCanvas(id);
+    this.setupCanvas(id, width, height);
     this.setupListItem(id);
   }
 
-  setupCanvas(id) {
+  setupCanvas(id, width, height) {
     this.canvas = document.createElement('canvas');
-    this.canvas.id = "layer" + id;
-    this.canvas.width = 1200;
-    this.canvas.height = 800;
-    this.canvas.style.zIndex = id;
+    var canvas = this.canvas;
+    canvas.id = id;
+    canvas.width = width;
+    canvas.height = height;
+    canvas.classList.add('drawingLayer');
+    canvas.classList.add('inactiveLayer');
+    canvas.style.zIndex = id;
+
+    var context = canvas.getContext("2d");
+    var layerManager = this.layerManager;
+    canvas.addEventListener('pointerdown', function(event) {
+      var layer = layerManager.getLayer(this.id);
+      if(layer.isActive) {
+        var position = getPointerPosition(canvas, event);
+        currTool.onDown(context, position.x, position.y);
+      }
+    });
+    canvas.addEventListener('pointermove', function(event) {
+      var layer = layerManager.getLayer(this.id);
+      if(layer.isActive) {
+        var position = getPointerPosition(canvas, event);
+        currTool.onMove(context, position.x, position.y);
+      }
+    });
+    canvas.addEventListener('pointerup', function(event) {
+      var layer = layerManager.getLayer(this.id);
+      if(layer.isActive) {
+        var position = getPointerPosition(canvas, event);
+        currTool.onUp(context, position.x, position.y);
+      }
+    });
+    canvas.addEventListener('pointerleave', function(event) {
+      var layer = layerManager.getLayer(this.id);
+      if(layer.isActive) {
+        var position = getPointerPosition(canvas, event);
+        currTool.onLeave(context, position.x, position.y);
+      }
+    });
   }
 
   setupListItem(id) {
@@ -39,9 +82,6 @@ class Layer {
     deleteButton.textContent = "Delete";
     var canvas = this.canvas;
     deleteButton.addEventListener('click', function(event) {
-      label.parentNode.removeChild(label);
-      makeActiveButton.parentNode.removeChild(makeActiveButton);
-      deleteButton.parentNode.removeChild(deleteButton);
       listItem.parentNode.removeChild(listItem);
       canvas.parentNode.removeChild(canvas);
       layerManager.removeLayer(id);
@@ -52,9 +92,16 @@ class Layer {
   markActiveState(isActive) {
     this.isActive = isActive;
     if(isActive) {
+      this.canvas.classList.remove('inactiveLayer');
       this.listItem.classList.add('layerSelected');
     } else {
+      this.canvas.classList.add('inactiveLayer');
       this.listItem.classList.remove('layerSelected');
     }
+  }
+
+  removeUI() {
+    this.listItem.parentNode.removeChild(this.listItem);
+    this.canvas.parentNode.removeChild(this.canvas);
   }
 }

@@ -1,10 +1,27 @@
 class LayerManager {
-  constructor() {
+  constructor(width, height) {
     this.layers = [];
     this.nextId = 0;
-    this.addLayer();
+    this.addLayer(width, height);
     this.activeLayerIndex = 0;
     this.layers[0].markActiveState(true);
+  }
+
+  reset(width, height) {
+    while(this.layers.length > 0) {
+      var currLayer = this.layers.pop();
+      currLayer.removeUI();
+    }
+    this.nextId = 0;
+    this.addLayer(width, height);
+    this.activeLayerIndex = 0;
+    this.layers[0].markActiveState(true);
+  }
+
+  getLayer(id) {
+    return this.layers.find(function(element) {
+      return element.id == id;
+    });
   }
 
   updateActiveLayer(idToActivate) {
@@ -20,8 +37,8 @@ class LayerManager {
     }
   }
 
-  addLayer() {
-    var newLayer = new Layer(this.nextId, this);
+  addLayer(width, height) {
+    var newLayer = new Layer(this.nextId, width, height, this);
 
     var canvasContainer = document.getElementById('doodle');
     canvasContainer.appendChild(newLayer.canvas);
@@ -50,5 +67,9 @@ class LayerManager {
         break;
       }
     }
+  }
+
+  setBackgroundImgLayer(img) {
+    this.layers[0].canvas.getContext("2d").drawImage(img, 0, 0);
   }
 }

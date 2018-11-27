@@ -11,15 +11,17 @@ function getPointerPosition(canvas, event) {
  * Sets up UI elements with their functionality.
  */
 function setup() {
-	var layerManager = new LayerManager();
+	var doodleWidth = 1200;
+	var doodleHeight = 800;
+
+	var layerManager = new LayerManager(doodleWidth, doodleHeight);
 	var actionHandler = new ActionHandler();
 	var canvas = document.getElementById('layer0');
-	var context = canvas.getContext("2d");
 	var currToolIndicator = document.getElementById('currToolIndicator');
 	var loadedImg = new Image();
 
 	var colorPicker = document.getElementById('colorPicker');
-	var currTool = new Brush(colorPicker);
+	currTool = new Brush(colorPicker);
 	colorPicker.addEventListener('change', function(event) {
 		currTool.changeColor('#' + colorPicker.jscolor);
 	});
@@ -56,16 +58,17 @@ function setup() {
 
 	var fileSelector = document.getElementById('fileSelect');
 	fileSelector.addEventListener('change', function(event) {
-		loadImage(loadedImg, canvas, context, fileSelector.files[0]);
+		loadImage(loadedImg, layerManager, fileSelector.files[0]);
 		actionHandler.reset();
 		actionHandler.setImage(loadedImg);
 	});
 
 	var addLayerButton = document.getElementById('addLayerButton');
 	addLayerButton.addEventListener('click', function(event) {
-		layerManager.addLayer();
+		layerManager.addLayer(doodleWidth, doodleHeight);
 	});
 
+/*
 	canvas.addEventListener('pointermove', function(event) {
 		var position = getPointerPosition(canvas, event);
 		currTool.onMove(context, position.x, position.y);
@@ -86,4 +89,5 @@ function setup() {
 		currTool.onLeave(context, position.x, position.y);
 		actionHandler.strokeInterrupted(position.x, position.y);
 	});
+	*/
 }

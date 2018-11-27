@@ -3,6 +3,7 @@ body {
 }
 
 #doodle {
+	position: relative;
 	width: 1200px;
 	height: 800px;
 	overflow: hidden;
@@ -10,13 +11,19 @@ body {
 	margin: 10px;
 }
 
-#layer1 {
-	z-index: 0;
-}
-
 #menu {
 	float: left;
 	margin: 10px;
+}
+
+.inactiveLayer {
+	pointer-events: none;
+}
+
+.drawingLayer {
+	position: absolute;
+  left:0px;
+  top:0px;
 }
 
 .layerSelected {
