@@ -1,3 +1,6 @@
+/*
+ * A class that facilitates the creation, deletion, and switching of layers 
+ */
 class LayerManager {
   constructor(width, height, actionHandler) {
     this.actionHandler = actionHandler;

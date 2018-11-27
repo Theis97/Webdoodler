@@ -7,6 +7,9 @@ function getPointerPosition(canvas, event) {
 	};
 }
 
+/*
+ * A class representing a single layer of the doodle.
+ */
 class Layer {
   constructor(id, width, height, layerManager, actionHandler) {
     this.layerManager = layerManager;

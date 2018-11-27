@@ -1,3 +1,6 @@
+/*
+ * Keeps a record of a single filter application on a layer by the user.
+ */
 class FilterAction extends Action  {
   constructor(layerId, filter) {
     super();
