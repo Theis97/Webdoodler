@@ -1,4 +1,4 @@
-function applyFilter(canvas, context) {
+function brighten(canvas, context) {
   var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
   for (var i = 0; i < imageData.data.length; i+= 4) {
     imageData.data[i] *= 1.2; // r

@@ -10,24 +10,32 @@
 	<script src="scripts/tool.js"></script>
 	<script src="scripts/brush.js"></script>
 	<script src="scripts/eyedropper.js"></script>
+	<script src="scripts/filters.js"></script>
 	<script src="scripts/action.js"></script>
+	<script src="scripts/stroke.js"></script>
+	<script src="scripts/filterAction.js"></script>
 	<script src="scripts/actionHandler.js"></script>
 	<script src="scripts/imageIO.js"></script>
-	<script src="scripts/filter.js"></script>
 	<script src="scripts/setup.js"></script>
 
 	<body onload="setup();">
 		<div id='menu'>
 			<p>Size:</p>
 			<input type="range" id="brushSize" name="size" min="1" max="50">
+
 			<p>Color:</p>
 			<input class="jscolor" id="colorPicker" value="000000">
 			<p><button id="undoButton" name="undo">Undo</button></p>
+
 			<p>Tools:</p>
 			<p><button id="brushButton" name="brush">Brush</button></p>
 			<p><button id="eyedropperButton" name="eyedropper">Eyedropper</button></p>
 			<p id='currToolIndicator'>Selected: Brush</p>
-			<p><button id="filterButton" name="filter">Filter</button></p>
+
+			<p>Filters:</p>
+			<p><button id="brightenButton" name="brighten">Brighten</button></p>
+
+			<p>Load an existing image</p>
 			<input type="file" id="fileSelect" name="file" accept="image/*"/>
 		</div>
 

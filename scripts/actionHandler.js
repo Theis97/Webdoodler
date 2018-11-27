@@ -21,20 +21,24 @@ class ActionHandler {
     this.img = null;
   }
 
-  addNewAction(tool, x, y) {
+  addFilter(filter) {
+    this.actions.push(new FilterAction(filter));
+  }
+
+  addNewStroke(tool, x, y) {
     if(tool.isRecorded()) {
       this.recording = true;
-      this.actions.push(new Action(tool.copy(), x, y));
+      this.actions.push(new Stroke(tool.copy(), x, y));
     }
   }
 
-  updateCurrentAction(x, y) {
+  updateCurrentStroke(x, y) {
     if(this.recording) {
       this.actions[this.actions.length - 1].addCoord(x, y);
     }
   }
 
-  actionInterrupted(x, y) {
+  strokeInterrupted(x, y) {
     if(this.recording) {
       this.actions[this.actions.length - 1].addCoord(x, y);
       this.recording = false;
@@ -47,7 +51,7 @@ class ActionHandler {
       context.drawImage(this.img, 0, 0);
     }
     for (let action of this.actions) {
-      action.doAction(context);
+      action.doAction(canvas, context);
     }
   }
 

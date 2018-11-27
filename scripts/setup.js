@@ -47,9 +47,10 @@ function setup() {
 		actionHandler.undo(canvas, context);
 	});
 
-	var filterButton = document.getElementById('filterButton');
-	filterButton.addEventListener('click', function(event) {
-		applyFilter(canvas, context);
+	var brightenButton = document.getElementById('brightenButton');
+	brightenButton.addEventListener('click', function(event) {
+		brighten(canvas, context);
+		actionHandler.addFilter(brighten);
 	});
 
 	var fileSelector = document.getElementById('fileSelect');
@@ -62,12 +63,12 @@ function setup() {
 	canvas.addEventListener('pointermove', function(event) {
 		var position = getPointerPosition(canvas, event);
 		currTool.onMove(context, position.x, position.y);
-		actionHandler.updateCurrentAction(position.x, position.y);
+		actionHandler.updateCurrentStroke(position.x, position.y);
   });
 	canvas.addEventListener('pointerdown', function(event) {
 		var position = getPointerPosition(canvas, event);
 		currTool.onDown(context, position.x, position.y);
-		actionHandler.addNewAction(currTool.copy(), position.x, position.y);
+		actionHandler.addNewStroke(currTool.copy(), position.x, position.y);
 	});
 	canvas.addEventListener('pointerup', function(event) {
 		var position = getPointerPosition(canvas, event);
@@ -77,6 +78,6 @@ function setup() {
 	canvas.addEventListener('pointerleave', function(event) {
 		var position = getPointerPosition(canvas, event);
 		currTool.onLeave(context, position.x, position.y);
-		actionHandler.actionInterrupted(position.x, position.y);
+		actionHandler.strokeInterrupted(position.x, position.y);
 	});
 }
