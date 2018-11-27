@@ -30,6 +30,13 @@ function setup() {
 		currToolIndicator.textContent = 'Selected: Brush';
 	});
 
+	var lineButton = document.getElementById('lineButton');
+	lineButton.addEventListener('click', function(event) {
+		currTool = new Line(colorPicker);
+		currTool.changeSize(sizeSlider.value);
+		currToolIndicator.textContent = 'Selected: Line';
+	});
+
 	var eyedropperButton = document.getElementById('eyedropperButton');
 	eyedropperButton.addEventListener('click', function(event) {
 		currTool = new Eyedropper(colorPicker);

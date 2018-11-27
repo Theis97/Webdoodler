@@ -46,7 +46,7 @@ class Layer {
       if(layer.isActive) {
         var position = getPointerPosition(canvas, event);
         currTool.onMove(context, position.x, position.y);
-        actionHandler.updateCurrentStroke(position.x, position.y);
+        actionHandler.updateCurrentStroke(currTool, position.x, position.y);
       }
     });
     canvas.addEventListener('pointerup', function(event) {
@@ -54,7 +54,7 @@ class Layer {
       if(layer.isActive) {
         var position = getPointerPosition(canvas, event);
         currTool.onUp(context, position.x, position.y);
-        actionHandler.setRecording(false);
+        actionHandler.strokeInterrupted(currTool, position.x, position.y);
       }
     });
     canvas.addEventListener('pointerleave', function(event) {
@@ -62,7 +62,7 @@ class Layer {
       if(layer.isActive) {
         var position = getPointerPosition(canvas, event);
         currTool.onLeave(context, position.x, position.y);
-        actionHandler.strokeInterrupted(position.x, position.y);
+        actionHandler.strokeInterrupted(currTool, position.x, position.y);
       }
     });
   }

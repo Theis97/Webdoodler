@@ -1,21 +1,20 @@
 /*
- * The basic drawing brush, simply draws a freeform line following the
- * cursor when clicking. Size and color can be adjusted.
+ * A tool for drawing line segments
  */
-class Brush extends Tool {
+class Line extends Tool {
   constructor(colorPicker) {
     super();
     this.colorPicker = colorPicker;
-    this.isPainting = false;
-    this.lastX = 0;
-    this.lastY = 0;
+    this.shouldRecord = false;
+    this.startX = 0;
+    this.startY = 0;
     this.size = 10;
     this.color = '#' + colorPicker.jscolor;
   }
 
   copy() {
-    var copy = new Brush(this.colorPicker);
-    copy.isPainting = this.isPainting;
+    var copy = new Line(this.colorPicker);
+    copy.shouldRecord = this.shouldRecord;
     copy.lastX = this.lastX;
     copy.lastY = this.lastY;
     copy.size = this.size;
@@ -24,20 +23,18 @@ class Brush extends Tool {
   }
 
   setLastPos(newX, newY) {
-    this.lastX = newX;
-    this.lastY = newY;
+    this.startX = newX;
+    this.startY = newY;
   }
 
   draw(context, x, y) {
     context.beginPath();
-    context.moveTo(this.lastX, this.lastY);
+    context.moveTo(this.startX, this.startY);
     context.lineTo(x, y);
     context.lineWidth = this.size;
     context.lineCap = "round";
     context.strokeStyle = this.color;
     context.stroke();
-
-    this.setLastPos(x, y);
   }
 
   changeColor(color) {
@@ -49,29 +46,20 @@ class Brush extends Tool {
   }
 
   onMove(context, x, y) {
-    if(this.isPainting) {
-      this.draw(context, x, y);
-    }
-    this.setLastPos(x, y);
+    this.shouldRecord = false;
   }
 
   onDown(context, x, y) {
-    this.isPainting = true;
+    this.shouldRecord = true;
     this.setLastPos(x, y);
   }
 
   onUp(context, x, y) {
-    this.isPainting = false;
-  }
-
-  onLeave(context, x, y) {
-    if(this.isPainting) {
-      this.draw(context, x, y);
-    }
-    this.isPainting = false;
+    this.shouldRecord = true;
+    this.draw(context, x, y);
   }
 
   isRecorded() {
-    return this.isPainting;
+    return this.shouldRecord;
   }
 }

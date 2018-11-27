@@ -11,13 +11,9 @@ class ActionHandler {
     this.img = img;
   }
 
-  setRecording(recording) {
-    this.recording = recording;
-  }
-
   reset() {
     this.actions = [];
-    this.recording = false;
+    this.tool = null;
     this.img = null;
   }
 
@@ -28,21 +24,19 @@ class ActionHandler {
 
   addNewStroke(layerId, tool, x, y) {
     if(tool.isRecorded()) {
-      this.recording = true;
       this.actions.push(new Stroke(layerId, tool.copy(), x, y));
     }
   }
 
-  updateCurrentStroke(x, y) {
-    if(this.recording) {
+  updateCurrentStroke(tool, x, y) {
+    if(tool.isRecorded()) {
       this.actions[this.actions.length - 1].addCoord(x, y);
     }
   }
 
-  strokeInterrupted(x, y) {
-    if(this.recording) {
+  strokeInterrupted(tool, x, y) {
+    if(tool.isRecorded()) {
       this.actions[this.actions.length - 1].addCoord(x, y);
-      this.recording = false;
     }
   }
 
