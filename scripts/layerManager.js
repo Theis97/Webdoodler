@@ -1,23 +1,28 @@
 /*
- * A class that facilitates the creation, deletion, and switching of layers 
+ * A class that facilitates the creation, deletion, and switching of layers
  */
 class LayerManager {
   constructor(width, height, actionHandler) {
     this.actionHandler = actionHandler;
     this.layers = [];
     this.nextId = 0;
-    this.addLayer(width, height);
+    this.doodleWidth = width;
+    this.doodleHeight = height;
+    this.addLayer();
     this.activeLayerIndex = 0;
     this.layers[0].markActiveState(true);
   }
 
   reset(width, height) {
+    this.doodleWidth = width;
+    this.doodleHeight = height;
+
     while(this.layers.length > 0) {
       var currLayer = this.layers.pop();
       currLayer.removeUI();
     }
     this.nextId = 0;
-    this.addLayer(width, height);
+    this.addLayer();
     this.activeLayerIndex = 0;
     this.layers[0].markActiveState(true);
   }
@@ -46,8 +51,9 @@ class LayerManager {
     }
   }
 
-  addLayer(width, height) {
-    var newLayer = new Layer(this.nextId, width, height, this, this.actionHandler);
+  addLayer() {
+    var newLayer = new Layer(this.nextId, this.doodleWidth, this.doodleHeight,
+                             this, this.actionHandler);
 
     var canvasContainer = document.getElementById('doodle');
     canvasContainer.appendChild(newLayer.canvas);
@@ -72,6 +78,7 @@ class LayerManager {
         if(this.activeLayerIndex > i) {
           this.activeLayerIndex--;
         }
+        currLayer.removeUI();
         this.layers.splice(i, 1);
         break;
       }

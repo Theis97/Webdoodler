@@ -85,16 +85,16 @@ class Layer {
     var id = this.id;
     makeActiveButton.addEventListener('click', function(event) {
       layerManager.updateActiveLayer(id);
+			actionHandler.layerSelected(id);
     });
     listItem.appendChild(makeActiveButton);
 
     var deleteButton = document.createElement('button');
     deleteButton.textContent = "Delete";
-    var canvas = this.canvas;
+		var actionHandler = this.actionHandler;
     deleteButton.addEventListener('click', function(event) {
-      listItem.parentNode.removeChild(listItem);
-      canvas.parentNode.removeChild(canvas);
       layerManager.removeLayer(id);
+			actionHandler.layerDeleted(id);
     });
     listItem.appendChild(deleteButton);
   }

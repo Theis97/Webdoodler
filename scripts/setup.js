@@ -75,6 +75,7 @@ function setup() {
 
 	var addLayerButton = document.getElementById('addLayerButton');
 	addLayerButton.addEventListener('click', function(event) {
-		layerManager.addLayer(doodleWidth, doodleHeight);
+		layerManager.addLayer();
+		actionHandler.layerAdded();
 	});
 }

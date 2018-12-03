@@ -40,8 +40,20 @@ class ActionHandler {
     }
   }
 
+  layerAdded() {
+    this.actions.push(new LayerAddAction());
+  }
+
+  layerSelected(layerId) {
+    this.actions.push(new LayerSelectAction(layerId));
+  }
+
+  layerDeleted(layerId) {
+    this.actions.push(new LayerDeleteAction(layerId));
+  }
+
   redraw(layerManager) {
-    layerManager.clearLayers();
+    layerManager.reset(layerManager.doodleWidth, layerManager.doodleHeight);
     if (this.img != null) {
       layerManager.setBackgroundImgLayer(this.img);
     }

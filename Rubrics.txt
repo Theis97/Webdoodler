@@ -53,3 +53,31 @@ Week 2
 5. "Unit Tests"
  - 2 points: Most functions are tested
  - 2.5 points: Tests are extremely thorough
+
+------
+Week 3
+------
+
+1. Clean up some details leftover from last week (Image saving,
+   undoing layer operations)
+ - 2 points: Full drawing can be saved, all layer operations (adding a layer,
+   deleting a layer, selecting a layer, reordering layers) can be undone
+ - 2.5 points: ???
+
+2. Selection & move tool
+ - 2 points: User can make a rectangular selection and move that selection
+   to a different part of the canvas
+ - 2.5 points: Selection can be a freeform shape
+
+3. Layer reordering
+ - 2 points: Layers can be moved up and down one step at a time
+ - 2.5 points: Layers can be moved to any position in the hierarchy in one step
+
+4. Layer content indicator
+ - 2 points: After switching to a different layer, only new active layer will be
+   shown for a moment
+ - 2.5 points: There are also thumbnails showing the content of each layer
+
+5. "Unit Tests"
+ - 2 points: Most functions are tested
+ - 2.5 points: Tests are extremely thorough
