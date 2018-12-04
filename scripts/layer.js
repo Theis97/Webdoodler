@@ -102,6 +102,7 @@ class Layer {
 		moveUpButton.textContent = "Move up";
 		moveUpButton.addEventListener('click', function(event) {
 			layerManager.moveLayer(id, 1);
+			actionHandler.layerMoved(id, 1);
 		});
 		listItem.appendChild(moveUpButton);
 
@@ -109,6 +110,7 @@ class Layer {
 		moveDownButton.textContent = "Move down";
 		moveDownButton.addEventListener('click', function(event) {
 			layerManager.moveLayer(id, -1);
+			actionHandler.layerMoved(id, -1);
 		});
 		listItem.appendChild(moveDownButton);
   }

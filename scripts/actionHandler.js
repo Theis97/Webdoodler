@@ -48,6 +48,10 @@ class ActionHandler {
     this.actions.push(new LayerSelectAction(layerId));
   }
 
+  layerMoved(layerId, direction) {
+    this.actions.push(new LayerMoveAction(layerId, direction));
+  }
+
   layerDeleted(layerId) {
     this.actions.push(new LayerDeleteAction(layerId));
   }
