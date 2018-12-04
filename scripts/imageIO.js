@@ -19,6 +19,11 @@ function loadImage(img, layerManager, imgFile) {
   reader.readAsDataURL(imgFile);
 }
 
-function saveDoodle() {
-	// TODO
+function saveDoodle(layerManager) {
+	var doodle = layerManager.getMergedCanvas();
+
+	var downloader = document.createElement('a');
+  downloader.download = "doodle.png";
+  downloader.href = doodle.toDataURL("image/png");
+  downloader.click();
 }

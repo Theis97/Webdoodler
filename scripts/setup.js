@@ -73,9 +73,15 @@ function setup() {
 		actionHandler.setImage(loadedImg);
 	});
 
+	var saveButton = document.getElementById('saveButton');
+	saveButton.addEventListener('click', function(event) {
+		saveDoodle(layerManager);
+	});
+
 	var addLayerButton = document.getElementById('addLayerButton');
 	addLayerButton.addEventListener('click', function(event) {
 		layerManager.addLayer();
 		actionHandler.layerAdded();
 	});
+
 }

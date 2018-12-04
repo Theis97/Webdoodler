@@ -37,6 +37,17 @@ class LayerManager {
     });
   }
 
+  getMergedCanvas() {
+    var fullDoodle = document.createElement('canvas');
+    fullDoodle.width = this.doodleWidth;
+    fullDoodle.height = this.doodleHeight;
+    var context = fullDoodle.getContext("2d");
+    for (let layer of this.layers) {
+      context.drawImage(layer.canvas, 0, 0);
+    }
+    return fullDoodle;
+  }
+
   updateActiveLayer(idToActivate) {
     if(this.activeLayerIndex < this.layers.length) {
       this.layers[this.activeLayerIndex].markActiveState(false);
