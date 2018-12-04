@@ -1,3 +1,6 @@
+/*
+ * A tool that selects a rectangular part of a layer.
+ */
 class Selection extends Tool {
   constructor() {
     super();

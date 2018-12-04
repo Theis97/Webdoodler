@@ -7,6 +7,7 @@ function setup() {
 
 	var actionHandler = new ActionHandler();
 	var layerManager = new LayerManager(doodleWidth, doodleHeight, actionHandler);
+	testLayerManager = layerManager;
 	var canvas = document.getElementById('layer0');
 	var currToolIndicator = document.getElementById('currToolIndicator');
 	var loadedImg = new Image();

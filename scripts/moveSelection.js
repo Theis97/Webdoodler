@@ -1,3 +1,7 @@
+/*
+ * Moves the selection made previously with the selection tool to a
+ * new position on the same layer.
+ */
 class MoveSelection extends Tool {
   constructor() {
     super();

@@ -1,3 +1,6 @@
+/*
+ * Keeps a record of a single move up or down of a layer in the layer hierarchy
+ */
 class LayerMoveAction extends Action {
   constructor(id, direction) {
     super();

@@ -1,6 +1,6 @@
 /*
- * Keeps track of all changes the user has made to the canvas, can revert
- * canvas to previous states.
+ * Keeps track of all changes the user has made to the doodle, can revert
+ * doodle to previous states.
  */
 class ActionHandler {
   constructor() {
