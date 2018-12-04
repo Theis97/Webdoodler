@@ -43,6 +43,18 @@ function setup() {
 		currToolIndicator.textContent = 'Selected: Eyedropper';
 	});
 
+	var selectionButton = document.getElementById('selectionButton');
+	selectionButton.addEventListener('click', function(event) {
+		currTool = new Selection();
+		currToolIndicator.textContent = 'Selected: Selection'
+	});
+
+	var moveButton = document.getElementById('moveButton');
+	moveButton.addEventListener('click', function(event) {
+		currTool = new MoveSelection();
+		currToolIndicator.textContent = 'Selected: Move Selection'
+	});
+
 	var undoButton = document.getElementById('undoButton');
 	undoButton.addEventListener('click', function(event) {
 		actionHandler.undo(layerManager);
