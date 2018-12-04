@@ -85,6 +85,7 @@ class Layer {
     var id = this.id;
     makeActiveButton.addEventListener('click', function(event) {
       layerManager.updateActiveLayer(id);
+			layerManager.activeLayerPreview();
 			actionHandler.layerSelected(id);
     });
     listItem.appendChild(makeActiveButton);
@@ -119,6 +120,14 @@ class Layer {
     var context = this.canvas.getContext("2d");
     context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
+
+	hide() {
+		this.canvas.classList.add('hiddenLayer');
+	}
+
+	show() {
+		this.canvas.classList.remove('hiddenLayer');
+	}
 
   markActiveState(isActive) {
     this.isActive = isActive;

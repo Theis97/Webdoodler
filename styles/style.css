@@ -20,6 +20,10 @@ body {
 	pointer-events: none;
 }
 
+.hiddenLayer {
+	display: none;
+}
+
 .drawingLayer {
 	position: absolute;
   left:0px;

@@ -51,6 +51,21 @@ class LayerManager {
     }
   }
 
+  activeLayerPreview() {
+    for (let layer of this.layers) {
+      if(!layer.isActive) {
+        layer.hide();
+      }
+    }
+    setTimeout(this.showAllLayers.bind(this), 350);
+  }
+
+  showAllLayers() {
+    for (let layer of this.layers) {
+      layer.show();
+    }
+  }
+
   addLayer() {
     var newLayer = new Layer(this.nextId, this.doodleWidth, this.doodleHeight,
                              this, this.actionHandler);
@@ -83,7 +98,7 @@ class LayerManager {
         var newIndex = i + direction;
         if(newIndex >= 0 && newIndex < this.layers.length) {
           var otherLayer = this.layers[newIndex];
-          
+
           currLayer.canvas.style.zIndex = newIndex;
           otherLayer.canvas.style.zIndex = i;
 

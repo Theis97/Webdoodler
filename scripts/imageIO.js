@@ -18,3 +18,7 @@ function loadImage(img, layerManager, imgFile) {
 
   reader.readAsDataURL(imgFile);
 }
+
+function saveDoodle() {
+	// TODO
+}
