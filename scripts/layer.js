@@ -97,6 +97,20 @@ class Layer {
 			actionHandler.layerDeleted(id);
     });
     listItem.appendChild(deleteButton);
+
+		var moveUpButton = document.createElement('button');
+		moveUpButton.textContent = "Move up";
+		moveUpButton.addEventListener('click', function(event) {
+			layerManager.moveLayer(id, 1);
+		});
+		listItem.appendChild(moveUpButton);
+
+		var moveDownButton = document.createElement('button');
+		moveDownButton.textContent = "Move down";
+		moveDownButton.addEventListener('click', function(event) {
+			layerManager.moveLayer(id, -1);
+		});
+		listItem.appendChild(moveDownButton);
   }
 
   clear() {

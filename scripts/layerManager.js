@@ -71,6 +71,45 @@ class LayerManager {
     this.nextId++;
   }
 
+  // direction
+  // +1: up
+  // -1: down
+  moveLayer(idToMove, direction) {
+    var layerList = document.getElementById('layerList');
+
+    for (var i = 0; i < this.layers.length; i++) {
+      var currLayer = this.layers[i];
+      if(currLayer.id === idToMove) {
+        var newIndex = i + direction;
+        if(newIndex >= 0 && newIndex < this.layers.length) {
+          var otherLayer = this.layers[newIndex];
+          
+          currLayer.canvas.style.zIndex = newIndex;
+          otherLayer.canvas.style.zIndex = i;
+
+          this.layers[newIndex] = currLayer;
+          this.layers[i] = otherLayer;
+
+          if(direction == 1) {
+            layerList.removeChild(currLayer.listItem);
+            layerList.insertBefore(currLayer.listItem, otherLayer.listItem);
+          } else {
+            layerList.removeChild(otherLayer.listItem);
+            layerList.insertBefore(otherLayer.listItem, currLayer.listItem);
+          }
+
+          if(i === this.activeLayerIndex) {
+            this.activeLayerIndex = newIndex;
+          } else if (newIndex === this.activeLayerIndex) {
+            this.activeLayerIndex = i;
+          }
+
+          break;
+        }
+      }
+    }
+  }
+
   removeLayer(idToRemove) {
     for (var i = 0; i < this.layers.length; i++) {
       var currLayer = this.layers[i];
