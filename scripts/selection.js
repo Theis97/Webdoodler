@@ -4,13 +4,24 @@ class Selection extends Tool {
     this.startX = 0;
     this.startY = 0;
     this.isSelecting = false;
+    this.shouldRecord = false;
   }
 
   copy() {
     var copy = new Selection();
-    copy.startX = this.startX;
-    copy.startY = this.startY;
+    copy.setLastPos(this.startX, this.startY);
+    copy.isSelecting = this.isSelecting;
+    copy.shouldRecord = this.shouldRecord;
     return copy;
+  }
+
+  setLastPos(newX, newY) {
+    this.startX = newX;
+    this.startY = newY;
+  }
+
+  draw(context, x, y) {
+    this.recordSelection(x, y);
   }
 
   recordSelection(lastX, lastY) {
@@ -31,24 +42,31 @@ class Selection extends Tool {
     }
   }
 
+  onMove(context, x, y) {
+    this.shouldRecord = false;
+  }
+
   onDown(context, x, y) {
+    this.shouldRecord = true;
     this.isSelecting = true;
-    this.startX = x;
-    this.startY = y;
+    this.setLastPos(x,y);
   }
 
   onUp(context, x, y) {
+    this.shouldRecord = true;
     this.isSelecting = false;
     this.recordSelection(x, y);
   }
 
   onLeave(context, x, y) {
     if(this.isSelecting) {
+      this.shouldRecord = true;
+      this.isSelecting = false;
       this.recordSelection(x, y);
     }
   }
 
   isRecorded() {
-    return false;
+    return this.shouldRecord;
   }
 }

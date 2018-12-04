@@ -3,21 +3,22 @@ class MoveSelection extends Tool {
     super();
     this.startX = 0;
     this.startY = 0;
+    this.shouldRecord = false;
   }
 
   copy() {
     var copy = new MoveSelection();
-    copy.startX = this.startX;
-    copy.startY = this.startY;
+    copy.setLastPos(this.startX, this.startY);
+    copy.shouldRecord = this.shouldRecord;
     return copy;
   }
 
-  onDown(context, x, y) {
-    this.startX = x;
-    this.startY = y;
+  setLastPos(newX, newY) {
+    this.startX = newX;
+    this.startY = newY;
   }
 
-  onUp(context, x, y) {
+  draw(context, x, y) {
     // copy selected pixels
     var selectionWidth = bottomRightX - topLeftX;
     var selectionHeight = bottomRightY - topLeftY;
@@ -48,5 +49,23 @@ class MoveSelection extends Tool {
     topLeftY = newY;
     bottomRightX = newX + selectionWidth;
     bottomRightY = newY + selectionHeight;
+  }
+
+  onMove(context, x, y) {
+    this.shouldRecord = false;
+  }
+
+  onDown(context, x, y) {
+    this.shouldRecord = true;
+    this.setLastPos(x, y);
+  }
+
+  onUp(context, x, y) {
+    this.shouldRecord = true;
+    this.draw(context, x, y);
+  }
+
+  isRecorded() {
+    return this.shouldRecord;
   }
 }

@@ -20,7 +20,7 @@ class Stroke extends Action {
   doAction(layerManager) {
     var layer = layerManager.getLayer(this.layerId);
     var context = layer.canvas.getContext("2d");
-    
+
     this.tool.setLastPos(this.coordList[0].x, this.coordList[0].y);
     for (let coord of this.coordList.slice(1)) {
       this.tool.draw(context, coord.x, coord.y);
