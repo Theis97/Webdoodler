@@ -81,3 +81,31 @@ Week 3
 5. "Unit Tests"
  - 2 points: Most functions are tested
  - 2.5 points: Tests are extremely thorough
+
+------
+Week 4
+------
+
+1. Selection tool/line tool previews
+ - 2 points: A boundary appears around the selection the user makes, and
+   there is a preview of the line that will be drawn when using the line tool
+ - 2.5 points: ???
+
+2. More brushes/filters
+ - 2 points: An eraser, a softer brush that uses transparency, and a new filter
+   have been implemented.
+ - 2.5 points: There are more new brushes/filters implemented in addition to
+   the ones required for 2 points
+
+3. Color palette
+ - 2 points: User can save colors to a palette to be used later
+ - 2.5 points: ???
+
+4. Polish UI
+ - 2 points: The UI is much more aesthetically pleasing than before
+ - 2.5 points: Menu items can be moved into different positions by the user
+   to suit their preferences
+
+5. "Unit Tests"
+ - 2 points: Most functions are tested
+ - 2.5 points: Tests are extremely thorough
