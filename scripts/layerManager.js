@@ -4,6 +4,7 @@
 class LayerManager {
   constructor(width, height, actionHandler) {
     this.actionHandler = actionHandler;
+    this.UILayer = document.getElementById("UILayer");
     this.layers = [];
     this.nextId = 0;
     this.doodleWidth = width;
@@ -21,6 +22,11 @@ class LayerManager {
       var currLayer = this.layers.pop();
       currLayer.removeUI();
     }
+
+    this.UILayer.width = width;
+    this.UILayer.height = height;
+    this.UILayer.style.zIndex = 1;
+
     this.nextId = 0;
     this.addLayer();
     this.activeLayerIndex = 0;
@@ -58,6 +64,7 @@ class LayerManager {
       if(currLayer.id === idToActivate) {
         this.activeLayerIndex = i;
         currLayer.markActiveState(true);
+        this.UILayer.style.zIndex = (i * 2) + 1;
       }
     }
   }
@@ -110,8 +117,8 @@ class LayerManager {
         if(newIndex >= 0 && newIndex < this.layers.length) {
           var otherLayer = this.layers[newIndex];
 
-          currLayer.canvas.style.zIndex = newIndex;
-          otherLayer.canvas.style.zIndex = i;
+          currLayer.canvas.style.zIndex = newIndex * 2;
+          otherLayer.canvas.style.zIndex = i * 2;
 
           this.layers[newIndex] = currLayer;
           this.layers[i] = otherLayer;

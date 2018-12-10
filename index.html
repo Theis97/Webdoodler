@@ -14,6 +14,7 @@
 	<script src="scripts/selection.js"></script>
 	<script src="scripts/MoveSelection.js"></script>
 	<script src="scripts/brush.js"></script>
+	<script src="scripts/eraser.js"></script>
 	<script src="scripts/line.js"></script>
 	<script src="scripts/eyedropper.js"></script>
 	<script src="scripts/filters.js"></script>
@@ -40,6 +41,7 @@
 
 			<p>Tools:</p>
 			<p><button id="brushButton" name="brush">Brush</button></p>
+			<p><button id="eraserButton" name="eraser">Eraser</button></p>
 			<p><button id="lineButton" name="line">Line</button></p>
 			<p><button id="eyedropperButton" name="eyedropper">Eyedropper</button></p>
 			<p><button id="selectionButton" name="selection">Selection</button></p>
@@ -59,7 +61,9 @@
 			<ul id='layerList'></ul>
 		</div>
 
-		<div id='doodle'></div>
+		<div id='doodle'>
+				<canvas id="UILayer" width="1200" height="800">
+		</div>
 
 	</body>
 </html>

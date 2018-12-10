@@ -30,7 +30,7 @@ class Layer {
     canvas.height = height;
     canvas.classList.add('drawingLayer');
     canvas.classList.add('inactiveLayer');
-    canvas.style.zIndex = id;
+    canvas.style.zIndex = id * 2;
 
     var context = canvas.getContext("2d");
     var layerManager = this.layerManager;

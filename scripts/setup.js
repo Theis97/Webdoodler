@@ -31,6 +31,13 @@ function setup() {
 		currToolIndicator.textContent = 'Selected: Brush';
 	});
 
+	var eraserButton = document.getElementById('eraserButton');
+	eraserButton.addEventListener('click', function(event) {
+		currTool = new Eraser();
+		currTool.changeSize(sizeSlider.value);
+		currToolIndicator.textContent = 'Selected: Eraser';
+	});
+
 	var lineButton = document.getElementById('lineButton');
 	lineButton.addEventListener('click', function(event) {
 		currTool = new Line(colorPicker);
