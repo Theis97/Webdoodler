@@ -1,4 +1,4 @@
-function previewSelection() {
+function outlineSelection() {
     var UILayer = document.getElementById("UILayer");
     var context = UILayer.getContext("2d");
     context.clearRect(0, 0, UILayer.width, UILayer.height);
