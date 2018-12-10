@@ -59,6 +59,7 @@ class Selection extends Tool {
     this.shouldRecord = true;
     this.isSelecting = false;
     this.recordSelection(x, y);
+    previewSelection();
   }
 
   onLeave(context, x, y) {
@@ -66,6 +67,7 @@ class Selection extends Tool {
       this.shouldRecord = true;
       this.isSelecting = false;
       this.recordSelection(x, y);
+      previewSelection();
     }
   }
 
