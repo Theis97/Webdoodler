@@ -34,33 +34,38 @@
 
 	<body onload="setup();">
 		<div id='menu'>
-			<p>Size:</p>
-			<input type="range" id="brushSize" name="size" min="1" max="50">
+			<h2>Current Tool: <span id='currToolIndicator'>Brush</span></h2>
+			<p>
+				Size:
+				<input type="range" id="brushSize" name="size" min="1" max="50">
+			</p>
 
-			<p>Color:</p>
-			<input class="jscolor" id="colorPicker" value="000000"> <br>
+			<p>
+				Color:
+				<input class="jscolor" id="colorPicker" value="000000">
+			</p>
 			<ul id="palette" class="list"></ul>
 
 			<p><button id="undoButton" name="undo">Undo</button></p>
 
 			<p>Tools:</p>
-			<button id="brushButton" name="brush">Brush</button> <br>
-			<button id="eraserButton" name="eraser">Eraser</button> <br>
-			<button id="lineButton" name="line">Line</button> <br>
-			<button id="eyedropperButton" name="eyedropper">Eyedropper</button> <br>
-			<button id="selectionButton" name="selection">Selection</button> <br>
-			<button id="moveButton" name="move">Move Selection</button>
-			<p id='currToolIndicator'>Selected: Brush</p>
+			<button id="brushButton" class="menuButton">Brush</button> <br>
+			<button id="eraserButton" class="menuButton">Eraser</button> <br>
+			<button id="lineButton" class="menuButton">Line</button> <br>
+			<button id="eyedropperButton" class="menuButton">Eyedropper</button> <br>
+			<button id="selectionButton" class="menuButton">Selection</button> <br>
+			<button id="moveButton" class="menuButton">Move Selection</button>
 
 			<p>Filters:</p>
-			<button id="brightenButton" name="brighten">Brighten</button> <br>
-			<button id="blurButton" name="blur">Blur</button> <br>
-			<button id="intensifyButton" name="intensify">Intensify</button>
+			<button id="brightenButton" class="menuButton">Brighten</button> <br>
+			<button id="blurButton" class="menuButton">Blur</button> <br>
+			<button id="intensifyButton" class="menuButton">Intensify</button>
 
-			<p>Load an existing image</p>
-			<input type="file" id="fileSelect" name="file" accept="image/*"/>
+			<p></p>
 
-			<p><button id="saveButton" name="save">Save Doodle</button></p>
+			<label for="file">Load Image</label>
+			<input type="file" id="fileSelect" name="file" accept="image/*"/> <br>
+			<button id="saveButton" name="save">Save Doodle</button>
 
 			<p><button id="addLayerButton" name="addLayer">New Layer</button></p>
 			<ul id='layerList' class="list"></ul>

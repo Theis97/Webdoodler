@@ -77,6 +77,7 @@ class Layer {
 
     var label = document.createElement('label');
     label.textContent = "Layer " + id;
+		label.classList.add("layerListLabel");
     listItem.appendChild(label);
 
     var makeActiveButton = document.createElement('button');

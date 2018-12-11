@@ -2,7 +2,7 @@ class ColorPalette {
   constructor(colorPicker) {
     this.colorPicker = colorPicker;
     this.list = document.getElementById('palette');
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 4; i++) {
       this.addColorSlot();
     }
   }
@@ -21,6 +21,7 @@ class ColorPalette {
 
     var saveColorButton = document.createElement('button');
     saveColorButton.textContent = "Save Color";
+    saveColorButton.classList.add('saveColorButton');
     saveColorButton.addEventListener('click', function(event) {
       loadColorButton.style.backgroundColor = '#' + colorPicker.jscolor;
     });

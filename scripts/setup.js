@@ -30,39 +30,39 @@ function setup() {
 	brushButton.addEventListener('click', function(event) {
 		currTool = new Brush(colorPicker);
 		currTool.changeSize(sizeSlider.value);
-		currToolIndicator.textContent = 'Selected: Brush';
+		currToolIndicator.textContent = 'Brush';
 	});
 
 	var eraserButton = document.getElementById('eraserButton');
 	eraserButton.addEventListener('click', function(event) {
 		currTool = new Eraser();
 		currTool.changeSize(sizeSlider.value);
-		currToolIndicator.textContent = 'Selected: Eraser';
+		currToolIndicator.textContent = 'Eraser';
 	});
 
 	var lineButton = document.getElementById('lineButton');
 	lineButton.addEventListener('click', function(event) {
 		currTool = new Line(colorPicker);
 		currTool.changeSize(sizeSlider.value);
-		currToolIndicator.textContent = 'Selected: Line';
+		currToolIndicator.textContent = 'Line';
 	});
 
 	var eyedropperButton = document.getElementById('eyedropperButton');
 	eyedropperButton.addEventListener('click', function(event) {
 		currTool = new Eyedropper(colorPicker);
-		currToolIndicator.textContent = 'Selected: Eyedropper';
+		currToolIndicator.textContent = 'Eyedropper';
 	});
 
 	var selectionButton = document.getElementById('selectionButton');
 	selectionButton.addEventListener('click', function(event) {
 		currTool = new Selection();
-		currToolIndicator.textContent = 'Selected: Selection'
+		currToolIndicator.textContent = 'Selection'
 	});
 
 	var moveButton = document.getElementById('moveButton');
 	moveButton.addEventListener('click', function(event) {
 		currTool = new MoveSelection();
-		currToolIndicator.textContent = 'Selected: Move Selection'
+		currToolIndicator.textContent = 'Move Selection'
 	});
 
 	var undoButton = document.getElementById('undoButton');
