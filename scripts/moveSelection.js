@@ -39,7 +39,7 @@ class MoveSelection extends Tool {
   overwriteOldPixels(context, width, height) {
     var selectedPixels = context.getImageData(topLeftX, topLeftY,
                                               width, height);
-    for (var i = 0; i < selectedPixels.data.length; i+= 4) {
+    for (var i = 0; i < selectedPixels.data.length; i += 4) {
       selectedPixels.data[i + 3] = 0; // alpha
     }
     context.putImageData(selectedPixels, topLeftX, topLeftY);
