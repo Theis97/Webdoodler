@@ -1,3 +1,7 @@
+/*
+ * A class that sets up a color palette where users from which users
+ * can save and reload colors they want to use.
+ */
 class ColorPalette {
   constructor(colorPicker) {
     this.colorPicker = colorPicker;

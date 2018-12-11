@@ -1,3 +1,6 @@
+/*
+ * A simple eraser
+ */
 class Eraser extends Tool {
   constructor() {
     super();
