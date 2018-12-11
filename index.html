@@ -11,6 +11,7 @@
 	<script src="scripts/selectionUtils.js"></script>
 	<script src="scripts/layer.js"></script>
 	<script src="scripts/layerManager.js"></script>
+	<script src="scripts/colorPalette.js"></script>
 	<script src="scripts/tool.js"></script>
 	<script src="scripts/selection.js"></script>
 	<script src="scripts/MoveSelection.js"></script>
@@ -37,9 +38,8 @@
 			<input type="range" id="brushSize" name="size" min="1" max="50">
 
 			<p>Color:</p>
-			<input class="jscolor" id="colorPicker" value="000000">
-			<div id="palette">
-			</div>
+			<input class="jscolor" id="colorPicker" value="000000"> <br>
+			<ul id="palette" class="list"></ul>
 
 			<p><button id="undoButton" name="undo">Undo</button></p>
 
@@ -62,7 +62,7 @@
 			<p><button id="saveButton" name="save">Save Doodle</button></p>
 
 			<p><button id="addLayerButton" name="addLayer">New Layer</button></p>
-			<ul id='layerList'></ul>
+			<ul id='layerList' class="list"></ul>
 		</div>
 
 		<div id='doodle'>

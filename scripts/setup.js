@@ -18,6 +18,8 @@ function setup() {
 		currTool.changeColor('#' + colorPicker.jscolor);
 	});
 
+	var colorPalette = new ColorPalette(colorPicker);
+
 	var sizeSlider = document.getElementById('brushSize');
 	sizeSlider.value = currTool.size;
 	sizeSlider.addEventListener('pointerup', function(event) {

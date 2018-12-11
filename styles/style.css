@@ -24,6 +24,10 @@ body {
 	z-index: 1;
 }
 
+.list {
+	list-style: none;
+}
+
 .inactiveLayer {
 	pointer-events: none;
 }
@@ -40,4 +44,10 @@ body {
 
 .layerSelected {
 	background-color: springgreen;
+}
+
+.colorButton {
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
 }
