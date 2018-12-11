@@ -88,6 +88,15 @@ function setup() {
 		actionHandler.addFilter(layerManager, blur);
 	});
 
+	var intensifyButton = document.getElementById('intensifyButton');
+	intensifyButton.addEventListener('click', function(event) {
+		var layer = layerManager.getActiveLayer();
+    var canvas = layer.canvas;
+    var context = canvas.getContext("2d");
+		intensify(canvas, context);
+		actionHandler.addFilter(layerManager, intensify);
+	});
+
 	var fileSelector = document.getElementById('fileSelect');
 	fileSelector.addEventListener('change', function(event) {
 		loadImage(loadedImg, layerManager, fileSelector.files[0]);

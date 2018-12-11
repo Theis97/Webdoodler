@@ -38,3 +38,18 @@ function blur(canvas, context) {
   }
   context.putImageData(imageData, 0, 0);
 }
+
+function intensify(canvas, context) {
+  var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  var mid = 127;
+  for (var i = 0; i < imageData.data.length; i+= 4) {
+    for (var j = i; j < i + 3; j++)  {
+      if(imageData.data[j] - mid > 0) {
+        imageData.data[j] *= 1.1;
+      } else {
+        imageData.data[j] *= 0.9;
+      }
+    }
+  }
+  context.putImageData(imageData, 0, 0);
+}
