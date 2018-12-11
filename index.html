@@ -38,20 +38,23 @@
 
 			<p>Color:</p>
 			<input class="jscolor" id="colorPicker" value="000000">
+			<div id="palette">
+			</div>
+
 			<p><button id="undoButton" name="undo">Undo</button></p>
 
 			<p>Tools:</p>
-			<p><button id="brushButton" name="brush">Brush</button></p>
-			<p><button id="eraserButton" name="eraser">Eraser</button></p>
-			<p><button id="lineButton" name="line">Line</button></p>
-			<p><button id="eyedropperButton" name="eyedropper">Eyedropper</button></p>
-			<p><button id="selectionButton" name="selection">Selection</button></p>
-			<p><button id="moveButton" name="move">Move Selection</button></p>
+			<button id="brushButton" name="brush">Brush</button> <br>
+			<button id="eraserButton" name="eraser">Eraser</button> <br>
+			<button id="lineButton" name="line">Line</button> <br>
+			<button id="eyedropperButton" name="eyedropper">Eyedropper</button> <br>
+			<button id="selectionButton" name="selection">Selection</button> <br>
+			<button id="moveButton" name="move">Move Selection</button>
 			<p id='currToolIndicator'>Selected: Brush</p>
 
 			<p>Filters:</p>
-			<p><button id="brightenButton" name="brighten">Brighten</button></p>
-			<p><button id="blurButton" name="blur">Blur</button></p>
+			<button id="brightenButton" name="brighten">Brighten</button> <br>
+			<button id="blurButton" name="blur">Blur</button>
 
 			<p>Load an existing image</p>
 			<input type="file" id="fileSelect" name="file" accept="image/*"/>

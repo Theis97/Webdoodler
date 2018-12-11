@@ -22,19 +22,16 @@ class Eraser extends Tool {
   }
 
   draw(context, x, y) {
-    var offset = Math.floor(this.size/2);
-    var startX = x - offset;
-    var startY = y - offset;
-
-    var pixels = context.getImageData(startX, startY, this.size, this.size);
-
-    for (var i = 0; i < pixels.data.length; i += 4) {
-      pixels.data[i + 3] = 0; // alpha
-    }
-    
-    context.putImageData(pixels, startX, startY);
+    context.beginPath();
+    context.moveTo(this.lastX, this.lastY);
+    context.lineTo(x, y);
+    context.lineWidth = this.size;
+    context.lineCap = "round";
+    context.globalCompositeOperation = "destination-out";
+    context.stroke();
 
     this.setLastPos(x, y);
+    context.globalCompositeOperation = "source-over";
   }
 
 
